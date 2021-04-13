@@ -140,8 +140,10 @@ rename_permits <- function(permits_data) {
 
 permits <- rename_permits(permits_data)
 
-write_csv(permits, "clean_data/austin_permits_post_2000.csv")
+permits_sample <- sample_n(permits, 300000)
 
+write_csv(permits, "clean_data/austin_permits_post_2000.csv")
+write_csv(permits_sample, "clean_data/austin_permits_post_2000_sample.csv")
 
 
 
