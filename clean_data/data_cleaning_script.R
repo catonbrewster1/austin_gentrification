@@ -146,5 +146,120 @@ write_csv(permits, "clean_data/austin_permits_post_2000.csv")
 write_csv(permits_sample, "clean_data/austin_permits_post_2000_sample.csv")
 
 
+########################################
+#### New Residential Unit Variables ####
+########################################
 
+new_res_data <- read_csv("raw_data/New_Residential_Units__Summary_by_Zip_Code_and_Type.csv") %>%
+  clean_names()
+
+# ID names of permit classes that are new residential units
+new_res_vars <- new_res_data %>%
+  select(permit_class) %>% 
+  unique()
+
+#########################
+#### Demolition Data ####
+#########################
+
+demo_data <- read_csv("raw_data/Demolition_Permits_-_Summary_by_Zipcode_and_Type.csv") %>%
+  clean_names()
+
+# ID names of permit classes that are new residential units
+demo_vars <- demo_data %>%
+  select(permit_class) %>% 
+  unique()
+
+
+#######################################
+#### Subdivision Case Applications ####
+#######################################
+
+subdiv_data <- read_csv("raw_data/Subdivision_Cases.csv")
+
+rename_subdiv <- function(subdiv_data) {
+  subdiv_data_return <- subdiv_data %>%
+    janitor::clean_names() %>%
+    select(permit_number,
+           case_type,
+           case_name,
+           sub_type,
+           work,
+           status,
+           proposed_land_use,
+           desc_of_proposed_development,
+           final_date,
+           status_date,
+           application_start_date,
+           approval_date,
+           calendar_year_folder_created,
+           zip_code,
+           existing_no_of_lots,
+           proposed_no_of_lots)
+    
+    return(subdiv_data_return)
+}
+
+subdiv <- rename_subdiv(subdiv_data)
+
+write_csv(subdiv, "clean_data/subdiv.csv")
+
+######################
+#### Tree Permits ####
+######################
+
+tree_data <- read_csv("raw_data/Issued_Tree_Permits.csv")
+
+rename_tree <- function(tree_data) {
+  
+  tree_data_return <- tree_data %>%
+    janitor::clean_names() %>%
+    select(permit_number,
+           project_id,
+           permit_class,
+           permit_address,
+           issued_date,
+           expires_date,
+           application_type,
+           public_tree,
+           reason_for_request,
+           latitude,
+           longitude,
+           council_district)
+  
+  return(tree_data_return)
+}
+
+tree <- rename_tree(tree_data)
+
+write_csv(tree, "clean_data/tree_removal.csv")
+
+#####################
+#### Crime Data ####
+#####################
+
+crime_data <- read_csv("raw_data/Crime_Reports.csv")
+
+rename_crime <- function(crime_data) {
+  crime_data_return <- crime_data %>%
+    janitor::clean_names() %>% 
+    select(incident_number,
+           highest_offense_description,
+           family_violence,
+           occurred_date,
+           zip_code,
+           council_district,
+           census_tract,
+           clearance_status,
+           category_description)
+  
+  return(crime_data_return)
+}
+
+crime <- rename_crime(crime_data)
+
+crime_sample <- sample_n(crime, 30000)
+
+write_csv(crime, "clean_data/crime_incidents.csv")
+write_csv(crime_sample, "clean_data/crime_incidents_sample.csv")
 
