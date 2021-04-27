@@ -263,3 +263,38 @@ crime_sample <- sample_n(crime, 30000)
 write_csv(crime, "clean_data/crime_incidents.csv")
 write_csv(crime_sample, "clean_data/crime_incidents_sample.csv")
 
+#####################
+#### Water Data ####
+#####################
+
+water_data_commercial <- read_csv("raw_data/Austin_Water_-_Commercial_Water_Consumption.csv")
+water_data_res <- read_csv("raw_data/Austin_Water_-_Residential_Water_Consumption.csv")
+
+
+#####################
+#### Home Data #####
+#####################
+
+zillow_home_val_data <- read_csv("raw_data/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_mon.csv") %>%
+  filter(CountyName == "Travis County") %>% 
+  select(zip_code = RegionName,
+         10:312)
+
+
+zillow_rent_data <- read_csv("raw_data/Zip_ZORI_AllHomesPlusMultifamily_SSA.csv") %>%
+  filter(MsaName == "Austin, TX") %>%
+  select(zip_code = RegionName, 
+         5:91)
+  
+
+
+
+
+
+
+zillow_home_val_data %>%
+  filter(CountyName == "Travis County") %>% 
+  select(RegionName,
+         10:312) %>% 
+  mutate(var_type = "home_val")
+
