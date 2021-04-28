@@ -1,6 +1,7 @@
 
 library(tidyverse)
 library(janitor)
+library(lubridate)
 
 setwd("/Users/carolinekinnen/Code/Machine_Learning/ml_project")
 
@@ -268,8 +269,39 @@ write_csv(crime_sample, "clean_data/crime_incidents_sample.csv")
 #####################
 
 water_data_commercial <- read_csv("raw_data/Austin_Water_-_Commercial_Water_Consumption.csv")
-water_data_res <- read_csv("raw_data/Austin_Water_-_Residential_Water_Consumption.csv")
+water_data_res <- read_csv("raw_data/Austin_Water_-_Residential_Water_Consumption.csv") %>% mutate(type = "residential")
 
+water_data <- water_data_commercial %>%
+  mutate(type = "commercial") %>%
+  rbind(water_data_res) %>% 
+  clean_names() %>%
+  mutate(year = as.numeric(substr(year_month, 1, 4)),
+         month = as.numeric(substr(year_month, 5, 7))) %>%
+  select(-year_month)
+
+write_csv(water_data, "clean_data/water_consumpt_data.csv")
+
+#####################
+##### 311 Data ######
+#####################
+
+three11_data <- read_csv("raw_data/311_Unified_Data_Test_Site_2019.csv")
+
+three11 <- three11_data %>%
+  clean_names() %>%
+  filter(county == "TRAVIS") %>%
+  select(zip_code,
+         service_request_sr_number,
+         sr_type_code,
+         sr_description,
+         created_date) %>%
+  mutate(created_date_trunc = substr(created_date, 1, 10)) %>%
+  mutate(created_date = mdy(created_date_trunc)) %>%
+  mutate(created_year = year(created_date),
+         created_month = month(created_date)) %>%
+  select(-c(created_date, created_date_trunc))
+  
+write_csv(three11, "clean_data/311_requests.csv")
 
 #####################
 #### Home Data #####
@@ -280,21 +312,12 @@ zillow_home_val_data <- read_csv("raw_data/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_s
   select(zip_code = RegionName,
          10:312)
 
+write_csv(zillow_home_val_data, "clean_data/zillow_home_value.csv")
 
 zillow_rent_data <- read_csv("raw_data/Zip_ZORI_AllHomesPlusMultifamily_SSA.csv") %>%
   filter(MsaName == "Austin, TX") %>%
   select(zip_code = RegionName, 
          5:91)
   
-
-
-
-
-
-
-zillow_home_val_data %>%
-  filter(CountyName == "Travis County") %>% 
-  select(RegionName,
-         10:312) %>% 
-  mutate(var_type = "home_val")
+write_csv(zillow_rent_data, "clean_data/zillow_rent_index.csv")
 
