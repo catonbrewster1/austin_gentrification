@@ -314,7 +314,7 @@ three11_top_request <- three11 %>%
 
 for (req in three11_top_request) {
   req_output <- tolower(req)
-  print(str_replace_all(req_output, " ", "_"))
+  print(req_output)
 }
 
 #####################
