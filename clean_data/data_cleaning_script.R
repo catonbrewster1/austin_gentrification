@@ -82,7 +82,7 @@ rename_acs <- function(acs_data, year) {
 }
 
 acs19 <- rename_acs(acs19_data, "19")
-  
+
 write_csv(acs19, "clean_data/acs19_data.csv")
 
 #####################
@@ -171,7 +171,6 @@ demo_vars <- demo_data %>%
   select(permit_class) %>% 
   unique()
 
-
 #######################################
 #### Subdivision Case Applications ####
 #######################################
@@ -197,8 +196,8 @@ rename_subdiv <- function(subdiv_data) {
            zip_code,
            existing_no_of_lots,
            proposed_no_of_lots)
-    
-    return(subdiv_data_return)
+  
+  return(subdiv_data_return)
 }
 
 subdiv <- rename_subdiv(subdiv_data)
@@ -264,6 +263,11 @@ crime_sample <- sample_n(crime, 30000)
 write_csv(crime, "clean_data/crime_incidents.csv")
 write_csv(crime_sample, "clean_data/crime_incidents_sample.csv")
 
+crime_top_offense <- crime %>% 
+  tabyl(highest_offense_description) %>% 
+  filter(percent > .01) %>% 
+  select(highest_offense_description) 
+
 #####################
 #### Water Data ####
 #####################
@@ -300,8 +304,18 @@ three11 <- three11_data %>%
   mutate(created_year = year(created_date),
          created_month = month(created_date)) %>%
   select(-c(created_date, created_date_trunc))
-  
+
 write_csv(three11, "clean_data/311_requests.csv")
+
+three11_top_request <- three11 %>% 
+  tabyl(sr_description) %>% 
+  filter(percent > .01) %>% 
+  select(sr_description) 
+
+for (req in three11_top_request) {
+  req_output <- tolower(req)
+  print(str_replace_all(req_output, " ", "_"))
+}
 
 #####################
 #### Home Data #####
@@ -318,6 +332,6 @@ zillow_rent_data <- read_csv("raw_data/Zip_ZORI_AllHomesPlusMultifamily_SSA.csv"
   filter(MsaName == "Austin, TX") %>%
   select(zip_code = RegionName, 
          5:91)
-  
+
 write_csv(zillow_rent_data, "clean_data/zillow_rent_index.csv")
 
