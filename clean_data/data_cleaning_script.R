@@ -146,7 +146,6 @@ permits_sample <- sample_n(permits, 300000)
 write_csv(permits, "clean_data/austin_permits_post_2000.csv")
 write_csv(permits_sample, "clean_data/austin_permits_post_2000_sample.csv")
 
-
 ########################################
 #### New Residential Unit Variables ####
 ########################################
@@ -272,7 +271,7 @@ crime_top_offense <- crime %>%
 #### Water Data ####
 #####################
 
-water_data_commercial <- read_csv("raw_data/Austin_Water_-_Commercial_Water_Consumption.csv")
+water_data_commercial <- read_csv("raw_data/Austin_Water_-_Commercial_Water_Consumption.csv") 
 water_data_res <- read_csv("raw_data/Austin_Water_-_Residential_Water_Consumption.csv") %>% mutate(type = "residential")
 
 water_data <- water_data_commercial %>%
