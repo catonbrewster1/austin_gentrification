@@ -262,7 +262,8 @@ crime_sample <- sample_n(crime, 30000)
 write_csv(crime, "clean_data/crime_incidents.csv")
 write_csv(crime_sample, "clean_data/crime_incidents_sample.csv")
 
-crime_top_offense <- crime %>% 
+crime_top_offense <- crime_data %>% 
+  clean_names() %>%
   tabyl(highest_offense_description) %>% 
   filter(percent > .01) %>% 
   select(highest_offense_description) 
