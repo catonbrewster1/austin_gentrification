@@ -283,7 +283,14 @@ water_data <- water_data_commercial %>%
          month = as.numeric(substr(year_month, 5, 7))) %>%
   select(-year_month)
 
-write_csv(water_data, "clean_data/water_consumpt_data.csv")
+water_grouped_sum <- water_data %>% 
+  group_by(postal_code, type, year) %>%
+  summarize(total_zip_type_year = sum(total_gallons)) %>%
+  filter(postal_code %in% austin_zips) %>%
+  pivot_wider(names_from = type, values_from = total_zip_type_year)
+  
+
+write_csv(water_grouped_sum, "raw_data/water_grouped_sum.csv")
 
 #####################
 ##### 311 Data ######
@@ -307,7 +314,8 @@ three11 <- three11_data %>%
 
 write_csv(three11, "clean_data/311_requests.csv")
 
-three11_top_request <- three11 %>% 
+three11_top_request <- three11_data %>% 
+  clean_names() %>%
   tabyl(sr_description) %>% 
   filter(percent > .01) %>% 
   select(sr_description) 
