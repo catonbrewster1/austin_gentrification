@@ -1,12 +1,12 @@
 Name,Label,Concept,Predicate Type,Group,New Name
 B01002_001E,Estimate!!Median age --!!Total:,MEDIAN AGE BY SEX,int,B01002,P: Median Age
 B01003_001E,Estimate!!Total,TOTAL POPULATION,int,B01003,P: Population
-B02001_001E,Estimate!!Total:,RACE,int,B02001,Race: Total
-B02001_002E,Estimate!!Total:!!White alone,RACE,int,B02001,Race: Total White
-B02001_003E,Estimate!!Total:!!Black or African American alone,RACE,int,B02001,Race: Total Black
-B03003_001E,Estimate!!Total:,HISPANIC OR LATINO ORIGIN,int,B03003,Race: Total in H/L Calc
-B03003_002E,Estimate!!Total:!!Not Hispanic or Latino,HISPANIC OR LATINO ORIGIN,int,B03003,Race: Total Hispanic/Latino
-B03003_003E,Estimate!!Total:!!Hispanic or Latino,HISPANIC OR LATINO ORIGIN,int,B03003,Race: Total Not Hispanic/Latino
+B03002_001E,Estimate!!Total:,HISPANIC OR LATINO ORIGIN BY RACE,int,B02001,Race: Total
+B03002_003E,Estimate!!Total:!!Not Hispanic or Latino:!!White alone,HISPANIC OR LATINO ORIGIN BY RACE,int,B03002,Race: Total Non-Hispanic White
+B03002_004E,Estimate!!Total:!!Not Hispanic or Latino:!!Black or African American alone,HISPANIC OR LATINO ORIGIN BY RACE,int,B03002,Race: Total Non-Hispanic Black
+B03002_005E,Estimate!!Total:!!Not Hispanic or Latino:!!American Indian and Alaska Native alone,HISPANIC OR LATINO ORIGIN BY RACE,int,B03002,Race: Total Non-Hispanic American Indian 
+B03002_006E,Estimate!!Total:!!Not Hispanic or Latino:!!Asian alone,HISPANIC OR LATINO ORIGIN BY RACE,int,B03002,Race: Total Non-Hispanic Asian
+B03002_012E,Estimate!!Total:!!Hispanic or Latino:,HISPANIC OR LATINO ORIGIN BY RACE,int,B03002,Race: Total Hispanic/Latino
 B05002_001E,Estimate!!Total:,PLACE OF BIRTH BY NATIVITY AND CITIZENSHIP STATUS,int,B05002,CZ: Total
 B05002_002E,Estimate!!Total:!!Native:,PLACE OF BIRTH BY NATIVITY AND CITIZENSHIP STATUS,int,B05002,CZ: Total Born in US
 B05002_013E,Estimate!!Total:!!Foreign born:,PLACE OF BIRTH BY NATIVITY AND CITIZENSHIP STATUS,int,B05002,CZ: Total Born out of US
