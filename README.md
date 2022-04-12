@@ -2,8 +2,8 @@
 
 ## Authors
 * Caton Brewster
-* Jacob Jameson
-* Deniz Tokmakoğlu
+* Andres Crucetta Nieto
+* Caroline Kinnen
 
 ## Overivew 
 Mid-sized cities have seen a boom in population in the past several years. For example, the population of Austin grew from 911,000 in 2000 to 2,053,000 in 2020 (a 125% increase). Accompanying this change has been increased economic development and activity in a greater number of neighborhoods alongside sharp increases in the cost of housing and living expenses. While greater economic activity brings with it positive benefits, the cost-of-living implications can be harmful to existing local residents, particularly low-income residents of increasingly desirable neighborhoods. Often these populations do not reap the rewards of economic development and are pushed out of their neighborhoods. This process is known as gentrification.
