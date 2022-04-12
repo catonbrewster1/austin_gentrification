@@ -13,3 +13,6 @@ Our project aims to predict neighborhoods that are likely to undergo gentrificat
 
 ## Details + Results
 A summary of the approach and results can be found [here](https://docs.google.com/presentation/d/19H_RKngEI0_xx7pDW0UUK327SNP3mqN554ITTTEepNw/edit#slide=id.gde4f1f3e4b_4_49). 
+
+<img width="932" alt="image" src="https://user-images.githubusercontent.com/84205874/162997251-a417930d-e7b2-434d-af93-88decea10641.png">
+
